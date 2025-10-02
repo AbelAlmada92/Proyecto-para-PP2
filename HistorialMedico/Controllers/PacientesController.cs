@@ -17,7 +17,7 @@ namespace HistorialMedico.Controllers
 
         };
 
-        // Get /api/pacientes
+        // Get /api/TodosLosPacientes
         [HttpGet]
         public IActionResult GetPacientes()
         {
