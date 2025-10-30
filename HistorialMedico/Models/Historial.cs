@@ -7,10 +7,11 @@ namespace HistorialMedico.Models
         public int Id { get; set; }
         [Required]
         public int PacienteId { get; set; }
-        [Range(0, 120)]
-        public string Diagnostico { get; set; }
+        [Required]
+        public string Diagnostico { get; set; } = null!;
         [Required]
         public DateTime Fecha { get; set; }
-        public string Notas { get; set; }
+        public string Notas { get; set; } = null!;
+        //public Paciente Paciente { get; set; };
     }
 }
