@@ -18,13 +18,68 @@ namespace HistorialMedico.Controllers
            new Historial { Id = 4, PacienteId = 4, Diagnostico = "Síndrome del deploy nocturno", Fecha = DateTime.Now.AddDays(-1),
                Notas = "Insomnio severo por deployments a las 3 AM" } };
 
-        // Get /api/historial/{pacienteId}
+        // Get /api/historial/{pacienteId} obtenemos el paciente por el ID
         [HttpGet("{pacienteId}")]
-        public IActionResult GetHistorial(int pacienteId)
+        public async Task<ActionResult<IEnumerable<Historial>>> GetHistorial(int pacienteId)
         {
+            await Task.Run(() => Task.Delay((1)));
             var lista = historial.FindAll(h => h.PacienteId == pacienteId);
+            if (lista == null)
+            {
+                return NotFound("No enontrado");
+            }
             return Ok(lista);
         }
-        
+
+        [HttpPost]
+        public async Task<IActionResult> CrearHistorial([FromBody] Historial nuevoHistorial)
+        {
+            await Task.Run(() => Task.Delay((1)));
+            nuevoHistorial.Id = historial.Count > 0 ? historial.Max(h => h.Id) + 1 : 1;
+            nuevoHistorial.Fecha = DateTime.Now;
+            historial.Add(nuevoHistorial);
+
+            return CreatedAtAction(nameof(GetHistorial), new { PacienteId = nuevoHistorial.PacienteId }, nuevoHistorial);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> ActualizarHistorial(int id, [FromBody] Historial historialActualizado)
+        {
+            await Task.Run(() => Task.Delay((1)));
+
+            if (id != historialActualizado.Id)
+            {
+                return BadRequest("El id de la ruta no coincide con el id del registro");
+            }
+
+            var registroExistente = historial.Find(h => h.Id == id);
+            if (registroExistente == null)
+            {
+                return NotFound("Registro de historial no encontrado para actualizar");
+            }
+
+            // actualizacion de propiedades:
+            registroExistente.Diagnostico = historialActualizado.Diagnostico;
+            registroExistente.Notas = historialActualizado.Notas;
+
+            return NoContent(); // 204 No Content
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarHistorial(int id)
+        {
+            await Task.Run(() => Task.Delay((1)));
+
+            var registroAEliminar = historial.Find(h => h.Id == id);
+
+            if (registroAEliminar == null)
+            {
+                return NotFound("Registro de historial no encontrado para eliminar");
+            }
+            historial.Remove(registroAEliminar);
+
+            return NoContent(); // 204 No Contento
+        }
+
     }
 }
