@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Asistencia Médica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f0fe;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1976d2;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    main {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1976d2;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button#guardar {
+      background-color: #43a047;
+      color: white;
+    }
+
+    button#limpiar {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button#mostrar {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      background: #f1f8e9;
+      border: 1px solid #c5e1a5;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>App de Asistencia Médica</h1>
+  </header>
+
+  <main>
+    <h2>Datos del Paciente</h2>
+
+    <form id="formPaciente">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Ingrese el nombre" required>
+
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" placeholder="Ingrese la edad" required>
+
+      <label for="dni">DNI:</label>
+      <input type="text" id="dni" placeholder="Ingrese el DNI" required>
+
+      <label for="cobertura">¿Tiene cobertura médica?</label>
+      <select id="cobertura" required>
+        <option value="">Seleccione una opción</option>
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+      </select>
+
+      <button type="button" id="guardar">Guardar Datos</button>
+      <button type="button" id="limpiar">Limpiar</button>
+      <button type="button" id="mostrar">Mostrar Información</button>
+    </form>
+
+    <div class="resultado" id="resultado"></div>
+  </main>
+
+  <script>
+    // Guardar los datos en memoria local (localStorage)
+    document.getElementById("guardar").addEventListener("click", () => {
+      const nombre = document.getElementById("nombre").value.trim();
+      const edad = document.getElementById("edad").value.trim();
+      const dni = document.getElementById("dni").value.trim();
+      const cobertura = document.getElementById("cobertura").value;
+
+      if (!nombre || !edad || !dni || !cobertura) {
+        alert("Por favor, complete todos los campos.");
+        return;
+      }
+
+      const paciente = { nombre, edad, dni, cobertura };
+      localStorage.setItem("paciente", JSON.stringify(paciente));
+      alert("Datos del paciente guardados correctamente.");
+    });
+
+    // Mostrar los datos almacenados
+    document.getElementById("mostrar").addEventListener("click", () => {
+      const resultado = document.getElementById("resultado");
+      const datos = localStorage.getItem("paciente");
+
+      if (datos) {
+        const p = JSON.parse(datos);
+        resultado.innerHTML = `
+          <h3>Información del Paciente</h3>
+          <p><strong>Nombre:</strong> ${p.nombre}</p>
+          <p><strong>Edad:</strong> ${p.edad}</p>
+          <p><strong>DNI:</strong> ${p.dni}</p>
+          <p><strong>Cobertura médica:</strong> ${p.cobertura}</p>
+        `;
+      } else {
+        resultado.textContent = "No hay datos almacenados.";
+      }
+    });
+
+    // Limpiar formulario y almacenamiento
+    document.getElementById("limpiar").addEventListener("click", () => {
+      document.getElementById("formPaciente").reset();
+      localStorage.removeItem("paciente");
+      document.getElementById("resultado").textContent = "";
+      alert("Formulario y almacenamiento limpiados.");
+    });
+  </script>
+</body>
+
+
+</html>
