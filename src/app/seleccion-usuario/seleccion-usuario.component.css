@@ -1,0 +1,120 @@
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #b1faa4 0%, #cca0f9 100%);
+    padding: 20px;
+}
+
+.seleccion {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    color: #333333;
+    margin-top: 10px;
+}
+
+p {
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+.opciones-usuario {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    min-width: 200px;
+    padding: 30px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #fafafa;
+
+    h3 {
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666666;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgb(255, 255, 255);
+    border-color: #ffffff;
+}
+
+.card.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+    transform: translateY(-2px);
+}
+
+.register {
+    margin-top: 2px;
+
+    p {
+        margin-top: 1px;
+        margin-bottom: 2px;
+        font-size: 1rem;
+        color: #c0c0c0;
+    }
+
+    button {
+        min-width: 200px;
+        padding: 12px 30px;
+        margin-top: 10px;
+        border: 1px solid #4757a3;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #667eea;
+        color: white;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgb(255, 255, 255);
+        border-color: #667eea;
+    }
+}
+
+   /* Footer general */
+.app-footer {
+    margin-top: 40px;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    background: #f4f4f4;
+    border-top: 1px solid #ddd;
+}
+
+.app-footer .footer-link {
+    display: block;
+    margin-top: 6px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.app-footer .footer-link:hover {
+    text-decoration: underline;
+}
