@@ -8,7 +8,11 @@ import { ProfesionalLoginComponent } from './profesional-login/profesional-login
 import { PacienteLoginComponent } from './paciente-login/paciente-login.component';
 import { UsuarioRegisterComponent } from './usuario-register/usuario-register.component';
 import { RegisterPacienteComponent } from './register-paciente/register-paciente.component';
-import { RegisterProfesionalComponent } from './register-profesional/register-profesional.component';
+import { RegisterProfesionalComponent } from './register-profesional/register-profesional.component'; 
+
+import { HistorialComponent } from './historial/historial.component';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { RegisterProfesionalComponent } from './register-profesional/register-pr
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    HistorialComponent,
+     FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

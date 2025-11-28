@@ -6,13 +6,19 @@ import { PacienteLoginComponent } from './paciente-login/paciente-login.componen
 import { UsuarioRegisterComponent } from './usuario-register/usuario-register.component';
 import { RegisterPacienteComponent } from './register-paciente/register-paciente.component';
 import { RegisterProfesionalComponent } from './register-profesional/register-profesional.component';
+import { HistorialComponent } from './historial/historial.component';
+
+
+
 const routes: Routes = [
   { path: '', component: SeleccionUsuarioComponent },
   { path: 'profesional-login', component: ProfesionalLoginComponent },
   { path: 'paciente-login', component: PacienteLoginComponent },
   { path: 'usuario-register', component: UsuarioRegisterComponent },
   { path: 'register-paciente', component: RegisterPacienteComponent },
-  { path: 'register-profesional', component: RegisterProfesionalComponent }
+  { path: 'register-profesional', component: RegisterProfesionalComponent },
+  { path: 'historial', component: HistorialComponent }
+
 ];
 
 @NgModule({

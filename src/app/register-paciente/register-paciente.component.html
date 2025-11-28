@@ -70,7 +70,11 @@
       </div>
 
       <div class="botones">
-        <button type="submit" class="register">Crear Cuenta</button>
+        <button type="button" class="register" (click)="crearCuenta()">
+          Crear Cuenta
+        </button>
+
+       <!-- <button type="submit" class="register">Crear Cuenta</button> -->
         <button type="button" class="back" routerLink="/usuario-register">← Volver</button>
       </div>
     </form>

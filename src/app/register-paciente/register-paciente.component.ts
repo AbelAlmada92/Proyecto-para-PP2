@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-paciente',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class RegisterPacienteComponent {
 
+  constructor(private router: Router) {}
+
+  crearCuenta() {
+    // acá más adelante guardás los datos del paciente...
+    // por ahora solo navegamos al historial
+
+    this.router.navigate(['/historial']);
+  }
 }
